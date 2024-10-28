@@ -1,0 +1,42 @@
+
+<div class="page-container">
+    <div class="qr-code-box">
+      <h3>Gerador de QR Code</h3>
+      
+      <!-- Selecionar o tipo de conteúdo do QR Code -->
+      <select [(ngModel)]="selectedType" class="input-field">
+        <option value="text">Texto ou URL</option>
+        <option value="phone">Número de Telefone</option>
+        <option value="image">Imagem para download</option>
+      </select>
+  
+      <input 
+        *ngIf="selectedType !== 'image'"
+        type="text"
+        placeholder="Digite o conteúdo para o QR Code"
+        [(ngModel)]="inputText"
+        class="input-field"
+      />
+  
+      <input 
+        *ngIf="selectedType === 'image'"
+        type="text"
+        placeholder="Digite a URL da imagem para o QR Code"
+        [(ngModel)]="inputText"
+        class="input-field"
+      />
+  
+      <button class="styled-button" (click)="generateQRCode()">Gerar QR Code</button>
+  
+      <!-- QR Code gerado -->
+      <qrcode *ngIf="qrData" [qrdata]="qrData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      
+      <!-- Formas geométricas decorativas -->
+      <div class="geometric-decorations">
+        <div class="circle"></div>
+        <div class="triangle"></div>
+        <div class="square"></div>
+      </div>
+    </div>
+  </div>
+  
